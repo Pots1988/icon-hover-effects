@@ -1,0 +1,136 @@
+:root {
+  --bg: #8ADAB2;
+  --color: #DF826C;
+  --color-icon: #525CEB;
+  --color-hover: #FFFFFF;
+  --icon-bg: rgba(255, 255, 255, 0.2);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  place-content: center;
+  gap: 2rem;
+  row-gap: 4rem;
+  background: var(--bg);
+  font: 2rem/1.2 'Abril Fatface', sans-serif;
+  color: var(--color);
+  height: 100vh;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 6rem;
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.25em;
+  animation: color 4s both infinite;
+  text-shadow: 0 0 0.5em currentColor;
+}
+
+@keyframes color {
+  0% {
+    color: var(--color);
+  }
+
+  25% {
+    color: #86B6F6;
+  }
+
+  50% {
+    color: var(--color-icon);
+  }
+
+  75% {
+    color: #DC84F3;
+  }
+
+  100% {
+    color: var(--color);
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.hidden {
+  font-size: 0;
+}
+
+.d-flex {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 2rem;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  color: var(--color-icon);
+  background: var(--icon-bg);
+  transition: background 0.2s, color 0.2s;
+}
+
+.icon svg {
+  width: 55%;
+  height: 55%;
+}
+
+.icon::after {
+  --circle-size: -0.25em;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  left: var(--circle-size);
+  right: var(--circle-size);
+  top: var(--circle-size);
+  bottom: var(--circle-size);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.125em var(--color-hover);
+  opacity: 0;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.icon--out::after {
+  transform: scale(0.8);
+}
+
+.icon--in::after {
+  transform: scale(1.2);
+}
+
+.icon:hover {
+  background: var(--color-hover);
+  color: var(--bg);
+}
+
+.icon:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
