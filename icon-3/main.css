@@ -1,0 +1,172 @@
+:root {
+  --bg: #5603AD;
+  --color: #B3E9C7;
+  --icon-color: rgb(246, 244, 243);
+  --icon-bg: rgba(255, 255, 255, 0.1);
+  --icon-bg-h: rgba(255, 255, 255, 0.05);
+  --box-shadow-1: 0 0 0 2px var(--icon-bg);
+  --box-shadow-2: 0 0 0.3em 0.3em rgba(0, 0, 0, 0.4);
+  --box-shadow-3: 0 0 0 0.3em rgba(255,255,255,0.5);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  place-content: center;
+  gap: 2rem;
+  row-gap: 4rem;
+  background: var(--bg);
+  font: 2rem/1.2 "Titan One", cursive;
+  color: var(--color);
+  height: 100vh;
+}
+
+@keyframes heartPulseShadow {
+  0% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0.05em var(--icon-bg), 0 0 0.1em var(--icon-bg-h), 0 0 0.2em rgba(131, 103, 199, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0.05em var(--icon-bg), 0 0 0.1em var(--icon-bg-h), 0 0 0.2em rgba(131, 103, 199, 0.4);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes heartPulse {
+  0% {
+    transform: scale(0.8);
+  }
+  15% {
+    transform: scale(1.1);
+  }
+  25%,
+  100% {
+    transform: scale(1);
+  }
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 1.2;
+  text-align: center;
+  margin: 0 0 1em;
+}
+
+h2 span {
+  position: relative;
+  display: inline-flex;
+  animation: heartPulse 1.5s infinite linear;
+}
+
+h2 span::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 120%;
+  height: 120%;
+  left: -10%;
+  top: -10%;
+  box-shadow: 0 0 0.05em var(--icon-bg);
+  border-radius: 50%;
+  transform: scale(0.8);
+  opacity: 0;
+  animation: heartPulseShadow 1.5s ease-out 75ms infinite;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.hidden {
+  font-size: 0;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 2rem;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  padding: 0;
+  border: 0;
+  background: var(--icon-bg);
+  color: var(--icon-color);
+  transition: transform ease-out 0.1s, background 0.2s;
+}
+
+.icon svg {
+  width: 50%;
+  height: 50%;
+}
+
+.icon::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: var(--box-shadow-1);
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+.icon:hover {
+  background: var(--icon-bg-h);
+  transform: scale(0.9);
+}
+
+.icon:hover::after {
+  animation: pulse 1.5s ease-out 75ms;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: var(--box-shadow-1), var(--box-shadow-2), var(--box-shadow-3);
+  }
+
+  100% {
+    box-shadow: var(--box-shadow-1), var(--box-shadow-2), var(--box-shadow-3);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
