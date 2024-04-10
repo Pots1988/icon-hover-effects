@@ -1,9 +1,10 @@
 :root {
-  --bg: #276FBF;
+  --bg: #9DFFF9;
   --color: #DF826C;
-  --color-icon: rgb(246, 244, 243);
-  --box-shadow-hovered: rgba(246, 244, 243, 0.3);
-  --header-shadow: rgba(0, 0, 0, 0.4);
+  --color-text: #fff;
+  --btn-bg: #8D80AD;
+  --cargo-background: #64F58D;
+  --animation-time: 2s;
 }
 
 html {
@@ -24,45 +25,16 @@ body {
   gap: 2rem;
   row-gap: 4rem;
   background: var(--bg);
-  font: 2rem/1.2 "Luckiest Guy", cursive;
+  font: 2rem/1.2 "Wendy One", sans-serif;
   color: var(--color);
   height: 100vh;
 }
 
-@keyframes shadow {
-  0%,
-  100% {
-    text-shadow: 0.05em 0.05em 0 var(--header-shadow);
-  }
-
-  17% {
-    text-shadow: 0 0.05em 0 var(--header-shadow);
-  }
-
-  34% {
-    text-shadow: -0.05em 0.05em 0 var(--header-shadow);
-  }
-
-  51% {
-    text-shadow: -0.05em 0 0 var(--header-shadow);
-  }
-
-  68% {
-    text-shadow: -0.05em -0.05em 0 var(--header-shadow);
-  }
-
-  85% {
-    text-shadow: 0 -0.05em 0 var(--header-shadow);
-  }
-}
-
 h2 {
-  font-weight: 400;
-  font-size: 6rem;
-  line-height: 1.2;
+  font: 700 4rem/1.2 "Angkor", serif;
   text-align: center;
-  margin: 0 0 0.25em;
-  animation: shadow 4s infinite linear;
+  margin: 0 0 1em;
+  text-transform: uppercase;
 }
 
 .section {
@@ -71,122 +43,108 @@ h2 {
   gap: 3rem;
 }
 
-.hidden {
-  font-size: 0;
-}
-
 .d-flex {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
 }
 
-.icon {
+.btn {
+  border: 0;
+  background: var(--btn-bg);
+  border-radius: 0.4em;
+  font-size: 2rem;
+  color: var(--color-text);
+  padding: 0.6em 1em;
+  text-transform: uppercase;
+  line-height: 1;
   display: inline-flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
-  width: 3em;
-  height: 3em;
+  gap: 2rem;
   cursor: pointer;
-  border-radius: 50%;
-  font-size: 2rem;
-  text-align: center;
-  position: relative;
-  text-decoration: none;
-  background: none;
   overflow: hidden;
-  padding: 0;
-  border: 0;
-  color: var(--color-icon);
-  box-shadow: 0 0 0 0.1em currentColor;
-  transition: all 0.3s;
+  font-family: inherit;
 }
 
-.icon svg {
-  width: 55%;
-  height: 55%;
+.btn svg {
+  width: 1.4em;
+  height: 1.4em;
+  color: var(--color-text);
 }
 
-@keyframes toRight {
-  49% {
-    transform: translate(100%);
+.btn.activated {
+  animation: fadeOutText var(--animation-time) linear;
+}
+
+.btn.activated .icon-cargo {
+  animation: cargo var(--animation-time) linear;
+}
+
+.btn.activated svg {
+  animation: moveToRight var(--animation-time) linear;
+}
+
+@keyframes fadeOutText {
+  10%,
+  80% {
+    color: transparent;
+  }
+
+  100% {
+    color: var(--color-text);
+  }
+}
+
+@keyframes cargo {
+  10%,
+  84% {
+    fill: transparent;
+  }
+
+  30%,
+  83% {
+    fill: var(--cargo-background);
+  }
+}
+
+@keyframes moveToRight {
+  10% {
+    transform: translateX(5rem);
   }
 
   50% {
-    opacity: 0;
-    transform: translate(-100%);
+    transform: translateX(5rem);
   }
 
-  51% {
+  80% {
+    transform: translateX(25rem);
+  }
+
+  81% {
     opacity: 1;
-  }
-}
-
-@keyframes toLeft {
-  49% {
-    transform: translate(-100%);
+    transform: translateX(25rem);
   }
 
-  50% {
+  82% {
     opacity: 0;
-    transform: translate(100%);
+    transform: translateX(25rem);
   }
 
-  51% {
-    opacity: 1;
-  }
-}
-
-@keyframes toTop {
-  49% {
-    transform: translateY(-100%);
-  }
-
-  50% {
+  83% {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateX(-10rem);
   }
 
-  51% {
+  84% {
     opacity: 1;
-  }
-}
-
-@keyframes toBottom {
-  49% {
-    transform: translateY(100%);
+    transform: translateX(-10rem);
   }
 
-  50% {
-    opacity: 0;
-    transform: translateY(-100%);
+  100% {
+    transform: translateX(0);
   }
-
-  51% {
-    opacity: 1;
-  }
-}
-
-.icon--right:hover svg {
-  animation: toRight 0.3s forwards;
-}
-
-.icon--left:hover svg {
-  animation: toLeft 0.3s forwards;
-}
-
-.icon--bottom:hover svg {
-  animation: toBottom 0.3s forwards;
-}
-
-.icon--top:hover svg {
-  animation: toTop 0.3s forwards;
-}
-
-.icon:hover {
-  background: var(--color-icon);
-  box-shadow: 0 0 0 0.2em var(--box-shadow-hovered);
-  color: var(--bg);
 }
