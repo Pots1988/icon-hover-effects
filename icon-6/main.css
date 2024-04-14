@@ -1,0 +1,162 @@
+:root {
+  --bg: #5E747F;
+  --color: #F8E16C;
+  --color-text: #fff;
+  --btn-bg: #E5C1BD;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  display: grid;
+  place-content: center;
+  gap: 2rem;
+  row-gap: 4rem;
+  background: var(--bg);
+  font: 2rem/1.2 "Wendy One", sans-serif;
+  color: var(--color);
+  height: 100vh;
+}
+
+h2 {
+  font: 3rem/1.2 "Frijole", system-ui;
+  text-align: center;
+  margin: 0 0 1em;
+  text-transform: uppercase;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn {
+  border: 0;
+  background: var(--btn-bg);
+  border-radius: 0.2em;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-text);
+  padding: 0.75em 1.5em;
+  display: inline-flex;
+  align-items: center;
+  gap: 1em;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  font-family: inherit;
+  transition: background 0.3s;
+}
+
+.btn__icon {
+  display: none;
+  width: 1em;
+  height: 1em;
+  color: var(--color-text);
+}
+
+.btn--success,
+.btn--error {
+  color: transparent;
+}
+
+.btn--success {
+  background: #7FC6A4;
+}
+
+.btn--error {
+  background: #FB8F67;
+}
+
+.btn__icon--message {
+  display: block;
+}
+
+.btn__text {
+  position: absolute;
+  display: none;
+  left: 50%;
+  translate: -50%;
+  margin-left: 0.5em;
+  color: var(--color-text);
+}
+
+.btn--success .btn__icon--message,
+.btn--error .btn__icon--message {
+  display: none;
+}
+
+.btn--success .btn__icon--success,
+.btn--success .btn__text--success,
+.btn--error .btn__icon--error,
+.btn--error .btn__text--error {
+  display: block;
+}
+
+.btn--success .btn__text--success {
+  animation: moveUp 0.5s;
+}
+
+.btn--error {
+  animation: shake 0.5s;
+}
+
+.btn--error .btn__text--error {
+  animation: scaleFromUp 0.5s;
+}
+
+@keyframes moveUp {
+  0% {
+    opacity: 0;
+    translate: -50% 50%;
+  }
+
+  100% {
+    opacity: 1;
+    translate: -50% 0;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    translate: 0;
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    translate: -0.5em;
+  }
+
+  20%, 40%, 60%, 80% {
+    translate: 0.5em;
+  }
+}
+
+@keyframes scaleFromUp {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
